@@ -1,0 +1,37 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Inter.ttf",
+      "sha1": "7237d9cf55f177702066a28a4dde1e4c7e8ab576"
+    },
+    {
+      "path": "assets/fonts/Inter_regular.ttf",
+      "sha1": "807046eb200fd9d1290c387b21446ef8770054d5"
+    },
+    {
+      "path": "assets/fonts/Mulish.ttf",
+      "sha1": "579b7323c75f639c7dbc35f8b341b3fcd4d88109"
+    },
+    {
+      "path": "assets/fonts/Mulish_bold.ttf",
+      "sha1": "17352fd4b1929910ad99ec6b9d1e04cb40662147"
+    },
+    {
+      "path": "assets/fonts/Mulish_regular.ttf",
+      "sha1": "807046eb200fd9d1290c387b21446ef8770054d5"
+    },
+    {
+      "path": "assets/fonts/Pacifico.ttf",
+      "sha1": "baca1fca7fe74b61cb33aa0da48ec1a3a77bcf49"
+    },
+    {
+      "path": "assets/fonts/Pacifico_regular.ttf",
+      "sha1": "807046eb200fd9d1290c387b21446ef8770054d5"
+    },
+    {
+      "path": "assets/fonts/fonts.d.ts",
+      "sha1": "6a6c51182581796eb2ccadca7546605a3e2bdb2a"
+    }
+  ]
+}
