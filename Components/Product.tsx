@@ -62,7 +62,7 @@ const Product = (props: {navigation: any}) => {
     dispatch(Actions.setProduct(data));
   };
   const compare: any = () => {
-    console.warn('resulttt', product);
+    console.warn('resulttt', products);
     dispatch(Actions.setProductValue(products));
     const precedence: number[] = GetPrecedence(products, ratelist);
     let nan: any;

@@ -182,7 +182,6 @@ export const SingleProduct: any = (props: any) => {
   useEffect(() => updatePrice(i, currvalue), [currvalue]);
   useEffect(() => updateWeight(i, measurevalue), [measurevalue]);
   const deleteProduct = () => {
-    console.warn('indexiiii', i);
     dispatch(Actions.deleteProduct(i));
   };
   return (
