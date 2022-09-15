@@ -2,9 +2,10 @@ const convertPrice = (converted_values: any, ratelist: any) => {
   converted_values.map((element: any, i: number) => {
     if (element.price.unit !== 'USD') {
       //@ts-ignore
-      converted_values[i].price.value =
-        converted_values[i].price.value /
-        ratelist[`${converted_values[i].price.unit}`];
+      converted_values[i].price.value = (
+        (ratelist['USD'] / ratelist[`${converted_values[i].price.unit}`]) *
+        converted_values[i].price.value
+      ).toFixed(2);
     }
   });
 };
@@ -24,6 +25,7 @@ const convertMeasure = (converted_values: any) => {
 export const GetPrecedence = (products: any, rate: any) => {
   // converted_values.length = 0;
   // ratelist.length = 0;
+  // ((toRate / fromRate) * searchValue).toFixed(2)
   let ratelist: any = [];
   var converted_values: any = [];
   converted_values = products;

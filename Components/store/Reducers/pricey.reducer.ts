@@ -5,7 +5,18 @@ const initialState: any = {
     currency: '',
     measurement: '',
   },
-  products: [],
+  products: [
+    {
+      name: '',
+      weight: {value: undefined, unit: ''},
+      price: {value: undefined, unit: ''},
+    },
+    {
+      name: '',
+      weight: {value: undefined, unit: ''},
+      price: {value: undefined, unit: ''},
+    },
+  ],
   precedence: [],
   ratelist: {},
   // products: {

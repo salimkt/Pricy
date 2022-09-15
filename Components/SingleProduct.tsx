@@ -183,7 +183,7 @@ export const SingleProduct: any = (props: any) => {
   useEffect(() => updateWeight(i, measurevalue), [measurevalue]);
   const deleteProduct = () => {
     dispatch(Actions.deleteProduct(i));
-  };
+  }; //PReference as top preference
   return (
     <View>
       <Text style={[styles1.body, {marginVertical: 15}]}>
@@ -208,6 +208,7 @@ export const SingleProduct: any = (props: any) => {
         }}></TextInput>
       <Text>{'\n'}</Text>
       <TextInput
+        keyboardType="numeric"
         placeholder="Price"
         placeholderTextColor={'#848484'}
         style={[styles.input, {width: '66.66%'}]}
@@ -232,6 +233,7 @@ export const SingleProduct: any = (props: any) => {
       />
       <Text>{'\n'}</Text>
       <TextInput
+        keyboardType="numeric"
         placeholder="Weight"
         placeholderTextColor={'#848484'}
         style={[styles.input, {width: '66.66%'}]}

@@ -8,10 +8,12 @@ const Header = (props: {navigation: any}) => {
   return (
     <View style={[styles.header, {elevation: 9}]}>
       <View style={styles1.subbody}>
-        <Image
-          style={styles.icon}
-          resizeMode="cover"
-          source={require('../assets/pricylogo.png')}></Image>
+        <Pressable onPress={() => navigation.navigate('About')}>
+          <Image
+            style={styles.icon}
+            resizeMode="cover"
+            source={require('../assets/pricylogo.png')}></Image>
+        </Pressable>
 
         <Pressable
           style={styles1.close}

@@ -6,6 +6,7 @@ import Result from '../Result';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import Header from '../header';
+import About from '../about';
 
 const Main_nav = () => {
   const Stack = createStackNavigator();
@@ -18,6 +19,7 @@ const Main_nav = () => {
         <Stack.Screen name="Product" component={Product} />
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Result" component={Result} />
+        <Stack.Screen name="About" component={About} />
       </Stack.Navigator>
     </NavigationContainer>
   );
