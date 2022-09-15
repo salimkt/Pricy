@@ -59,7 +59,11 @@ export const pricyReducer = (state = initialState, action: any) => {
         ...state,
         ratelist: action.payload,
       };
-
+    case Actions.RESET_PRODUCT:
+      return {
+        ...state,
+        products: action.payload,
+      };
     default:
       return state;
   }

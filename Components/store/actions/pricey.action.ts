@@ -4,6 +4,7 @@ export const SET_PRODUCTVALUES = 'SET_PRODUCTVALUES';
 export const SET_PRECEDENCE = 'SET_PRECEDENCE';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const SET_RATE = 'SET_RATE';
+export const RESET_PRODUCT = 'RESET_PRODUCT';
 
 export const setPreference = (preference: any) => {
   return {
@@ -38,6 +39,12 @@ export const deleteProduct = (index: any) => {
 export const setRate = (list: any) => {
   return {
     type: SET_RATE,
+    payload: list,
+  };
+};
+export const resetProduct = (list: any) => {
+  return {
+    type: RESET_PRODUCT,
     payload: list,
   };
 };

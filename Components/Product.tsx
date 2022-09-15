@@ -58,9 +58,11 @@ const Product = (props: {navigation: any}) => {
       weight: {value: undefined, unit: preference.measurement},
       price: {value: undefined, unit: preference.currency},
     };
+    console.warn('dataaaaa', data);
     dispatch(Actions.setProduct(data));
   };
   const compare: any = () => {
+    console.warn('resulttt', product);
     dispatch(Actions.setProductValue(products));
     const precedence: number[] = GetPrecedence(products, ratelist);
     let nan: any;
@@ -80,6 +82,20 @@ const Product = (props: {navigation: any}) => {
       ]);
     } else {
       dispatch(Actions.setPrecedence(precedence));
+      dispatch(
+        Actions.resetProduct([
+          {
+            name: '',
+            weight: {value: undefined, unit: preference.measurement},
+            price: {value: undefined, unit: preference.currency},
+          },
+          {
+            name: '',
+            weight: {value: undefined, unit: preference.measurement},
+            price: {value: undefined, unit: preference.currency},
+          },
+        ]),
+      );
       navigation.navigate('Result');
     }
   };
@@ -134,7 +150,7 @@ const Product = (props: {navigation: any}) => {
       <Header navigation={navigation} />
       <View style={[styles1.subbody, {height: SCREEN_HEIGHT - 85}]}>
         <ScrollView>
-          {products.map((prod: any, key: number) => (
+          {product.map((prod: any, key: number) => (
             <View>
               <SingleProduct
                 onChangeName={onChangeName}
