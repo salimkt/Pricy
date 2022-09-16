@@ -15,7 +15,6 @@ import {GetPrecedence} from './Services/ServiceFns';
 import {SingleProduct} from './SingleProduct';
 import * as Actions from './store/actions';
 import Header from './header';
-import {styles} from './Welcome';
 import {styles1} from './Settings';
 
 const Product = (props: {navigation: any}) => {
@@ -55,8 +54,8 @@ const Product = (props: {navigation: any}) => {
   const AddItem: any = () => {
     const data = {
       name: '',
-      weight: {value: undefined, unit: preference.measurement},
-      price: {value: undefined, unit: preference.currency},
+      weight: {value: '', unit: preference.measurement},
+      price: {value: '', unit: preference.currency},
     };
     console.warn('dataaaaa', data);
     dispatch(Actions.setProduct(data));
@@ -82,20 +81,7 @@ const Product = (props: {navigation: any}) => {
       ]);
     } else {
       dispatch(Actions.setPrecedence(precedence));
-      dispatch(
-        Actions.resetProduct([
-          {
-            name: '',
-            weight: {value: undefined, unit: preference.measurement},
-            price: {value: undefined, unit: preference.currency},
-          },
-          {
-            name: '',
-            weight: {value: undefined, unit: preference.measurement},
-            price: {value: undefined, unit: preference.currency},
-          },
-        ]),
-      );
+      dispatch(Actions.resetProduct([]));
       navigation.navigate('Result');
     }
   };

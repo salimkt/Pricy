@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontWeight: '700',
+    marginTop: 66.5,
   },
   version: {color: 'white', fontSize: 18, fontWeight: '700'},
   header: {

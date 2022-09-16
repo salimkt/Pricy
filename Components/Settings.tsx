@@ -26,7 +26,7 @@ const Settings = (props: {navigation: any}) => {
   if (SCREEN_HEIGHT < SCREEN_WIDTH) {
     height = SCREEN_HEIGHT + 90;
   } else {
-    height = SCREEN_HEIGHT - 300;
+    height = SCREEN_HEIGHT - 138;
   }
   const {navigation} = props;
   const dispatch = useDispatch();
@@ -189,14 +189,45 @@ const Settings = (props: {navigation: any}) => {
     {label: 'Fijian Dollar - FJD', value: 'FJD'},
     {label: 'Malaysian Ringgit - MYR', value: 'MYR'},
   ]);
+
   const [Measurement, setMeasurement] = useState([
+    //Weight
     {label: 'Gram - g', value: 'g'},
     {label: 'Kilogram - Kg', value: 'Kg'},
-    {label: 'Pounds - Pounds', value: 'Pounds'},
+    {label: 'milligram - mg', value: 'mg'},
+    {label: 'Pounds - £', value: 'Pounds'},
+    {label: 'Ounces - ℥', value: 'Ounces'},
+    {label: 'ton - t', value: 'ton'},
+    //Volume
+    {label: 'Liter - L', value: 'Liter'},
+    {label: 'milliliter - ml', value: 'ml'},
+    {label: 'Ounce', value: 'ounce'},
+    {label: 'Fluid ounce - fl oz', value: 'fl oz'},
+    {label: 'cup', value: 'cup'},
+    {label: 'pint - pt', value: 'pint'},
+    {label: 'quart - qt', value: 'quart'},
+    {label: 'gallon - gal', value: 'gallon'},
+    //length
+    {label: 'Inches - in', value: 'in'},
+    {label: 'Centimeter - cm', value: 'cm'},
+    {label: 'Meter - m', value: 'm'},
+    {label: 'feet - ft', value: 'ft'},
+    {label: 'yard - yd', value: 'yd'},
+    {label: 'mile - mi', value: 'mi'},
+    {label: 'kilometer - km', value: 'km'},
+    //Area
+    {label: 'square foot - sqft', value: 'sqft'},
+    {label: 'Square centimeter - sqcm', value: 'sqcm'},
+    {label: 'square meter - sqm', value: 'sqm'},
+    {label: 'Hectare - ha', value: 'ha'},
+    {label: 'square inch - sqin', value: 'sqin'},
+    {label: 'square yard - sqyd', value: 'sqyd'},
+    {label: 'acre - ac', value: 'ac'},
   ]);
   const updateSettings = () => {
     let ob = {setstatus: true, currency: currvalue, measurement: measurevalue};
     dispatch(Actions.setPreference(ob));
+    dispatch(Actions.setMeasureCategory(measurevalue));
     navigation.navigate('Product');
   };
 
