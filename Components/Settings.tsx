@@ -258,7 +258,7 @@ const Settings = (props: {navigation: any}) => {
             setOpen={setcurrOpen}
             setValue={setcurrValue}
             setItems={setCurrency}
-            listMode="SCROLLVIEW"
+            listMode="FLATLIST"
             dropDownContainerStyle={[
               styles1.dropdownContainer,
               styles1.dropdown,
@@ -277,7 +277,7 @@ const Settings = (props: {navigation: any}) => {
             setOpen={setmeasureOpen}
             setValue={setmeasureValue}
             setItems={setMeasurement}
-            listMode="SCROLLVIEW"
+            listMode="FLATLIST"
             dropDownContainerStyle={[
               styles1.dropdownContainer,
               styles1.dropdown,

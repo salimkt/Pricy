@@ -18,14 +18,13 @@ const Result = (props: {navigation: any}) => {
   const precedence: number[] = useSelector(
     (state: any) => state.pricey.precedence,
   );
-  let max: number = Math.max(...precedence);
-  let profitable = precedence.indexOf(max) + 1;
+  let min: number = Math.min(...precedence);
+  let profitable = precedence.indexOf(min) + 1;
   function pad(s: string | number) {
     return s < 10 ? '0' + s : s;
   }
   var d = new Date();
   let df = [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/');
-  console.warn(df);
 
   return (
     <View style={styles1.body}>
@@ -41,6 +40,7 @@ const Result = (props: {navigation: any}) => {
             </Text>
             <Text style={[styles.resultText, {fontSize: 18, marginTop: 18}]}>
               Maximum Profit is on Product {profitable}
+              {'\n'}
             </Text>
             {precedence.map((pre, key) => (
               <Text
@@ -48,22 +48,28 @@ const Result = (props: {navigation: any}) => {
                   styles.resultText,
                   {
                     fontSize: 18,
-                    marginTop: 12,
+                    marginTop: 5,
                     alignSelf: 'flex-start',
                     marginLeft: 20,
-                    marginBottom: 8,
+                    marginBottom: 2,
                   },
                 ]}>
                 Unit Price of product
-                {' ' + (key + 1) + ' - $ ' + pre.toFixed(2)}
+                {' ' + (key + 1) + ' - $ ' + pre.toFixed(4)}
               </Text>
             ))}
-            <Text>currency exchange rate as on {df}</Text>
+            <Text style={[styles.resultText]}>
+              {'\n\n'}
+              currency exchange rate as on {df}
+            </Text>
           </View>
         </ScrollView>
         <TouchableHighlight
           style={[styles1.button, {backgroundColor: '#E5E5E5'}]}
-          onPress={() => navigation.navigate('Product')}>
+          onPress={() => {
+            navigation.replace('Product');
+            navigation.navigate('Product');
+          }}>
           <Text style={[styles1.btntext, {color: '#355371'}]}>
             Compare another product
           </Text>

@@ -43,10 +43,10 @@ export const setRate = (list: any) => {
     payload: list,
   };
 };
-export const resetProduct = (list: any) => {
+export const resetProduct = () => {
   return {
     type: RESET_PRODUCT,
-    payload: list,
+    payload: null,
   };
 };
 export const setMeasureCategory = (measure: any) => {

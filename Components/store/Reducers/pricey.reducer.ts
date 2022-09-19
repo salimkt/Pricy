@@ -1,6 +1,6 @@
 import * as Actions from '../actions';
 
-const weights = ['Ounces', 'Pounds', 'ton', 'g', 'kg', 'mg'];
+const weights = ['Ounces', 'Pounds', 'ton', 'g', 'Kg', 'mg'];
 const volumes = [
   'fl oz',
   'cup',
@@ -164,7 +164,18 @@ export const pricyReducer = (state = initialState, action: any) => {
     case Actions.RESET_PRODUCT:
       return {
         ...state,
-        products: action.payload,
+        products: [
+          {
+            name: '',
+            weight: {value: '', unit: ''},
+            price: {value: '', unit: ''},
+          },
+          {
+            name: '',
+            weight: {value: '', unit: ''},
+            price: {value: '', unit: ''},
+          },
+        ],
       };
     case Actions.SET_MEASURE_CATEGORY:
       let category: any;

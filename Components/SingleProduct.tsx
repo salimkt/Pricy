@@ -21,7 +21,6 @@ export const SingleProduct: any = ({
     (state: any) => state.pricey.measurecategory.category,
   );
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
   const [curropen, setcurrOpen] = useState(false);
   let fav: string;
   favour.currency === ''
@@ -186,6 +185,8 @@ export const SingleProduct: any = ({
   const [openmeasure, setmeasureOpen] = useState(false);
   const [measurevalue, setmeasureValue] = useState(fav);
   const [Measurement, setMeasurement] = useState(measurecategory);
+  //updatePrice(currvalue); //To set at initial time
+  //updateWeight(measurevalue);
   useEffect(() => {
     updatePrice(i, currvalue);
     favour.currency = currvalue;
@@ -194,11 +195,19 @@ export const SingleProduct: any = ({
     updateWeight(i, measurevalue);
     favour.measure = measurevalue;
   }, [measurevalue]);
+  // useEffect(() => {
+  //   setmeasureOpen(false);
+  // }, [curropen]);
   const deleteProduct = () => {
     dispatch(Actions.deleteProduct(i));
-  }; //PReference as top preference
+  };
   return (
-    <View>
+    <View
+    // onTouchStart={() => {
+    //   setcurrOpen(false);
+    //   setmeasureOpen(false);
+    // }}
+    >
       <Text style={[styles1.body, {marginVertical: 15}]}>
         Product {i + 1}
         {'\n'}
@@ -213,13 +222,11 @@ export const SingleProduct: any = ({
       </Text>
 
       <TextInput
-        value={name}
         placeholder="Name of Product (optional)"
         placeholderTextColor={'#848484'}
         style={[styles.input, {width: '100%'}]}
         onChangeText={name => {
           onChangeName(name, i);
-          setName(name);
         }}></TextInput>
       <Text>{'\n'}</Text>
       <TextInput
@@ -236,7 +243,13 @@ export const SingleProduct: any = ({
         dropDownContainerStyle={[
           styles1.dropdownContainer,
           styles1.dropdown,
-          {width: '30%', position: 'absolute', right: 0, marginTop: -50},
+          {
+            width: '30%',
+            position: 'absolute',
+            right: 0,
+            marginTop: -50,
+            zIndex: 100,
+          },
         ]}
         open={curropen}
         value={currvalue}
@@ -268,7 +281,13 @@ export const SingleProduct: any = ({
         dropDownContainerStyle={[
           styles1.dropdownContainer,
           styles1.dropdown,
-          {width: '30%', position: 'absolute', right: 0, marginTop: -50},
+          {
+            width: '30%',
+            position: 'absolute',
+            right: 0,
+            marginTop: -50,
+            zIndex: 100,
+          },
         ]}
       />
       <View style={styles.line} />

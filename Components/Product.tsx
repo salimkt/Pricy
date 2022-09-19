@@ -34,8 +34,8 @@ const Product = (props: {navigation: any}) => {
       if (
         product.price.unit === '' ||
         product.weight.unit === '' ||
-        product.price.value === undefined ||
-        product.weight.value === undefined
+        product.price.value === '' ||
+        product.weight.value === ''
       ) {
         setEmpty(true);
       } else {
@@ -54,8 +54,8 @@ const Product = (props: {navigation: any}) => {
   const AddItem: any = () => {
     const data = {
       name: '',
-      weight: {value: '', unit: preference.measurement},
-      price: {value: '', unit: preference.currency},
+      weight: {value: '', unit: ''},
+      price: {value: '', unit: ''},
     };
     dispatch(Actions.setProduct(data));
   };
@@ -80,7 +80,7 @@ const Product = (props: {navigation: any}) => {
       ]);
     } else {
       dispatch(Actions.setPrecedence(precedence));
-      dispatch(Actions.resetProduct([]));
+      dispatch(Actions.resetProduct());
       navigation.navigate('Result');
     }
   };
@@ -128,7 +128,7 @@ const Product = (props: {navigation: any}) => {
         //   },
         // },
       }),
-    [BackHandler],
+    [],
   );
   return (
     <View style={styles1.body}>

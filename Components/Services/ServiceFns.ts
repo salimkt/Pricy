@@ -1,4 +1,4 @@
-const weights = ['Ounces', 'Pounds', 'ton', 'g', 'kg', 'mg'];
+const weights = ['Ounces', 'Pounds', 'ton', 'g', 'Kg', 'mg'];
 const volumes = [
   'fl oz',
   'cup',
@@ -17,10 +17,9 @@ const convertPrice = (converted_values: any, ratelist: any) => {
   converted_values.map((element: any, i: number) => {
     if (element.price.unit !== 'USD') {
       //@ts-ignore
-      converted_values[i].price.value = (
+      converted_values[i].price.value =
         (1 / ratelist[`${converted_values[i].price.unit}`]) *
-        converted_values[i].price.value
-      ).toFixed(2);
+        converted_values[i].price.value;
     }
   });
   return converted_values;
@@ -115,7 +114,7 @@ export const GetPrecedence = (products: any, rate: any) => {
   console.warn(converted_values);
   converted_values.map(
     (ele: {price: {value: number}; weight: {value: number}}) => {
-      precedence.push(ele.weight.value / ele.price.value);
+      precedence.push(ele.price.value / ele.weight.value);
     },
   );
   console.warn('Precedence', precedence);
