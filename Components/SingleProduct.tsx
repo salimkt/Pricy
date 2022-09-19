@@ -5,6 +5,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {styles1} from './Settings';
 import * as Actions from './store/actions';
+
+let favour: {currency: string; measure: string} = {currency: '', measure: ''};
+
 export const SingleProduct: any = ({
   onChangeName,
   onChangeWeight,
@@ -20,8 +23,11 @@ export const SingleProduct: any = ({
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [curropen, setcurrOpen] = useState(false);
-  const [price, setPrice] = useState('');
-  const [currvalue, setcurrValue] = useState(preference.currency);
+  let fav: string;
+  favour.currency === ''
+    ? (fav = preference.currency)
+    : (fav = favour.currency);
+  const [currvalue, setcurrValue] = useState(fav);
   const [Currency, setCurrency] = useState([
     {label: 'EUR', value: 'EUR'},
     {label: 'OMR', value: 'OMR'},
@@ -174,12 +180,20 @@ export const SingleProduct: any = ({
     {label: 'FJD', value: 'FJD'},
     {label: 'MYR', value: 'MYR'},
   ]);
-  const [measure, setMeasure] = useState('');
+  favour.measure === ''
+    ? (fav = preference.measurement)
+    : (fav = favour.measure);
   const [openmeasure, setmeasureOpen] = useState(false);
-  const [measurevalue, setmeasureValue] = useState(preference.measurement);
+  const [measurevalue, setmeasureValue] = useState(fav);
   const [Measurement, setMeasurement] = useState(measurecategory);
-  useEffect(() => updatePrice(i, currvalue), [currvalue]);
-  useEffect(() => updateWeight(i, measurevalue), [measurevalue]);
+  useEffect(() => {
+    updatePrice(i, currvalue);
+    favour.currency = currvalue;
+  }, [currvalue]);
+  useEffect(() => {
+    updateWeight(i, measurevalue);
+    favour.measure = measurevalue;
+  }, [measurevalue]);
   const deleteProduct = () => {
     dispatch(Actions.deleteProduct(i));
   }; //PReference as top preference
@@ -209,14 +223,12 @@ export const SingleProduct: any = ({
         }}></TextInput>
       <Text>{'\n'}</Text>
       <TextInput
-        value={price}
         keyboardType="numeric"
         placeholder="Price"
         placeholderTextColor={'#848484'}
         style={[styles.input, {width: '66.66%'}]}
         onChangeText={price => {
           onChangePrice(price, i);
-          setPrice(price);
         }}></TextInput>
       <DropDownPicker
         placeholder=""
@@ -236,14 +248,12 @@ export const SingleProduct: any = ({
       />
       <Text>{'\n'}</Text>
       <TextInput
-        value={measure}
         keyboardType="numeric"
         placeholder="Weight"
         placeholderTextColor={'#848484'}
         style={[styles.input, {width: '66.66%'}]}
         onChangeText={weight => {
           onChangeWeight(weight, i);
-          setMeasure(weight);
         }}></TextInput>
       <DropDownPicker
         placeholder=""

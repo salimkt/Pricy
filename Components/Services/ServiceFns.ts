@@ -12,114 +12,96 @@ const volumes = [
 
 const lengths = ['in', 'ft', 'yd', 'mi', 'cm', 'm', 'km'];
 const Areas = ['sqft', 'sqcm', 'sqm', 'ha', 'sqin', 'sqyd', 'ac'];
-const whole = [
-  //Weight
-  {label: 'g', value: 'g'},
-  {label: 'Kg', value: 'Kg'},
-  {label: 'mg', value: 'mg'},
-  {label: '£', value: 'Pounds'},
-  {label: '℥', value: 'Ounces'},
-  {label: 't', value: 'ton'},
-  //Volume
-  {label: 'L', value: 'Liter'},
-  {label: 'ml', value: 'ml'},
-  {label: 'Ounce', value: 'ounce'},
-  {label: 'fl oz', value: 'fl oz'},
-  {label: 'cup', value: 'cup'},
-  {label: 'pt', value: 'pint'},
-  {label: 'qt', value: 'quart'},
-  {label: 'gal', value: 'gallon'},
-  //length
-  {label: 'in', value: 'in'},
-  {label: 'cm', value: 'cm'},
-  {label: 'm', value: 'm'},
-  {label: 'ft', value: 'ft'},
-  {label: 'yd', value: 'yd'},
-  {label: 'mi', value: 'mi'},
-  {label: 'km', value: 'km'},
-  //Area
-  {label: 'sqft', value: 'sqft'},
-  {label: 'sqcm', value: 'sqcm'},
-  {label: 'sqm', value: 'sqm'},
-  {label: 'ha', value: 'ha'},
-  {label: 'sqin', value: 'sqin'},
-  {label: 'sqyd', value: 'sqyd'},
-  {label: 'ac', value: 'ac'},
-];
-const weightmeasure = [
-  //Weight
-  {label: 'g', value: 'g'},
-  {label: 'Kg', value: 'Kg'},
-  {label: 'mg', value: 'mg'},
-  {label: '£', value: 'Pounds'},
-  {label: '℥', value: 'Ounces'},
-  {label: 't', value: 'ton'},
-];
-const volumemeasure = [
-  //Volume
-  {label: 'L', value: 'Liter'},
-  {label: 'ml', value: 'ml'},
-  {label: 'Ounce', value: 'ounce'},
-  {label: 'fl oz', value: 'fl oz'},
-  {label: 'cup', value: 'cup'},
-  {label: 'pt', value: 'pint'},
-  {label: 'qt', value: 'quart'},
-  {label: 'gal', value: 'gallon'},
-];
-const lengthmeasure = [
-  //length
-  {label: 'in', value: 'in'},
-  {label: 'cm', value: 'cm'},
-  {label: 'm', value: 'm'},
-  {label: 'ft', value: 'ft'},
-  {label: 'yd', value: 'yd'},
-  {label: 'mi', value: 'mi'},
-  {label: 'km', value: 'km'},
-];
-const Areameasure = [
-  //Area
-  {label: 'sqft', value: 'sqft'},
-  {label: 'sqcm', value: 'sqcm'},
-  {label: 'sqm', value: 'sqm'},
-  {label: 'ha', value: 'ha'},
-  {label: 'sqin', value: 'sqin'},
-  {label: 'sqyd', value: 'sqyd'},
-  {label: 'ac', value: 'ac'},
-];
 
 const convertPrice = (converted_values: any, ratelist: any) => {
   converted_values.map((element: any, i: number) => {
     if (element.price.unit !== 'USD') {
       //@ts-ignore
       converted_values[i].price.value = (
-        (ratelist['USD'] / ratelist[`${converted_values[i].price.unit}`]) *
+        (1 / ratelist[`${converted_values[i].price.unit}`]) *
         converted_values[i].price.value
       ).toFixed(2);
     }
   });
+  return converted_values;
 };
 const convertMeasure = (converted_values: any) => {
   converted_values.map((element: any, i: number) => {
     if (weights.includes(element.weight.unit)) {
-      if (element.weight.unit !== 'g') {
+      //Weight
+      if (element.weight.unit !== 'Kg') {
         switch (element.weight.unit) {
-          case 'Kg':
-            converted_values[i].weight.value *= 1000;
-          case 'pound':
-            converted_values[i].weight.value *= 453.6;
+          case 'g':
+            converted_values[i].weight.value /= 1000;
+          case 'mg':
+            converted_values[i].weight.value /= 1000000;
+          case 'Pounds':
+            converted_values[i].weight.value /= 2.205;
+          case 'Ounces':
+            converted_values[i].weight.value /= 35.274;
+          case 'ton':
+            converted_values[i].weight.value *= 907.2;
         }
       } else if (lengths.includes(element.weight.unit)) {
-        switch (element.weight.unit) {
+        //Length
+        if (element.weight.unit !== 'm') {
+          switch (element.weight.unit) {
+            case 'ft':
+              converted_values[i].weight.value /= 3.281;
+            case 'in':
+              converted_values[i].weight.value /= 39.37;
+            case 'yd':
+              converted_values[i].weight.value /= 1.094;
+            case 'mi':
+              converted_values[i].weight.value *= 1609;
+            case 'cm':
+              converted_values[i].weight.value /= 100;
+            case 'km':
+              converted_values[i].weight.value *= 1000;
+          }
         }
       } else if (volumes.includes(element.weight.unit)) {
-        switch (element.weight.unit) {
+        //Volume
+        if (element.weight.unit !== 'Liter') {
+          switch (element.weight.unit) {
+            case 'fl oz':
+              converted_values[i].weight.value /= 33.814;
+            case 'cup':
+              converted_values[i].weight.value /= 4.227;
+            case 'pint':
+              converted_values[i].weight.value /= 2.113;
+            case 'quart':
+              converted_values[i].weight.value *= 0.946353;
+            case 'gallon':
+              converted_values[i].weight.value *= 3.785;
+            case 'ml':
+              converted_values[i].weight.value /= 1000;
+            case 'ounce':
+              converted_values[i].weight.value /= 33.814;
+          }
         }
       } else if (Areas.includes(element.weight.unit)) {
-        switch (element.weight.unit) {
+        //Areas
+        if (element.weight.unit !== 'sqm') {
+          switch (element.weight.unit) {
+            case 'sqft':
+              converted_values[i].weight.value /= 10.764;
+            case 'sqcm':
+              converted_values[i].weight.value /= 10000;
+            case 'ha':
+              converted_values[i].weight.value *= 10000;
+            case 'sqin':
+              converted_values[i].weight.value /= 1550;
+            case 'sqyd':
+              converted_values[i].weight.value /= 1.196;
+            case 'ac':
+              converted_values[i].weight.value *= 4047;
+          }
         }
       }
     }
   });
+  return converted_values;
 };
 
 export const GetPrecedence = (products: any, rate: any) => {
@@ -128,10 +110,9 @@ export const GetPrecedence = (products: any, rate: any) => {
   converted_values = products;
   var precedence: Array<number> = [];
   ratelist = rate;
-  convertPrice(converted_values, ratelist);
-  convertMeasure(converted_values);
+  converted_values = convertPrice(converted_values, ratelist);
+  converted_values = convertMeasure(converted_values);
   console.warn(converted_values);
-
   converted_values.map(
     (ele: {price: {value: number}; weight: {value: number}}) => {
       precedence.push(ele.weight.value / ele.price.value);

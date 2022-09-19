@@ -57,7 +57,6 @@ const Product = (props: {navigation: any}) => {
       weight: {value: '', unit: preference.measurement},
       price: {value: '', unit: preference.currency},
     };
-    console.warn('dataaaaa', data);
     dispatch(Actions.setProduct(data));
   };
   const compare: any = () => {
@@ -129,7 +128,7 @@ const Product = (props: {navigation: any}) => {
         //   },
         // },
       }),
-    [],
+    [BackHandler],
   );
   return (
     <View style={styles1.body}>
